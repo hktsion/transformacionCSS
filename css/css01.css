@@ -1,0 +1,141 @@
+@font-face{
+    /*La fuente, que ha sido descargada, está en la carpeta 'font' y de esta manera lo importamos de forma que no la perdamos en cao de no haber conexión a internet*/
+    font-family: runner;
+    src: url(../fonts/runner.TTF);
+}
+*{margin:0px; padding: 0px;}/*formateo del documento;*/
+body {
+    font-family: monospace, arial;/*Fuente general del documento*/
+}
+div{
+    /*Contenedor principal*/
+    margin:auto;/*Centrado*/
+    margin-top:20px;
+
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    perspective:800px;/*determina la distancia entre el plano-Z y el usuario. Es una propiedad no heredable*/
+
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition:1s;/*duración de la transición, ponemos 1 segundo para que se aprecie mejor*/
+
+    /*Etiquetas para que cada navegador interprete la propiedad, al no haber un standard por el que se de*/
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    transform-style:preserve-3d;/*La propiedad general siempre al final*/
+}
+div:first-child>div{
+    /*con el selector CSS nos aseguramos de que sea este primer div, el que cumpla las siguientes propiedades*/
+    width:300px;
+    height: 500px;
+    border:solid 1px black;
+    box-shadow: 10px 0px 20px black;
+}
+div>div:hover{
+    transition:1s;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform:rotateY(180deg);/*Al dispararse el hover, el contenedor principal debe girar 180 grados, de forma que veamos el menú... la parte trasera*/
+}
+div figure{
+    height: 500px;
+    width:300px;
+    position: absolute;
+
+    -webkit-backface-visibility: hidden; 
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;/*ningún contenedor debe mostrar su parte trasera*/
+}
+figure:nth-child(5){				
+    background: floralwhite;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);/*Corresponde al menú, que se encuentra en la parte de atrás inicialmente*/
+}
+figure:nth-child(2){	
+    opacity: 0;/*Inicialmente ponemos los contenedores transparentes, de forma que podamos ver la cara principal y el menu, al disparar el hover la opacidad cambiará*/
+}
+figure:nth-child(3){
+    opacity: 0;
+}
+figure:nth-child(4){
+    opacity: 0;
+}
+figure:target{
+    opacity: 1;/*Al disparar el target, cambiamos la opacidad de la imagen de manera que pasa de transparente a opaca, es la que se va a ver*/
+}
+a{
+    display:block;
+    font-family: runner;
+    font-size: 18px;
+    border: 2px solid darkred;
+    background: #304f6d;
+    text-align: center;
+    margin: 20px 3.5em;
+    padding:15px;
+    color: floralwhite;
+    border-radius: 7px;
+}
+a:hover{
+    background:gray;
+    color:floralwhite;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition:1s;
+}
+
+div>div figure:last-child>p:first-child{
+    /*Corresponde a la flecha situada en la esquina superior derecha*/
+    margin: 0px;
+    color: black;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: right;
+    padding: 10px;}
+
+div>div figure:last-child>p:nth-child(2){
+    /*Corresponde al título: BLADE RUNNER*/
+    margin-left: 20px ;
+    font-family: runner;
+    font-size: 1.7em;
+    color: #304f6d;
+}
+
+div>div figure:last-child>p:nth-child(3){
+    /*Todos esos momentos...*/
+    font-family: monospace;
+    margin-left: 27px;
+    margin-right: 25px;
+    font-size: 12px;
+    color: #21384d;
+}
+
+div>div figure:last-child>p:nth-child(4){
+    /*Roy Batty*/
+    color: darkred;
+    font-size: 12px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    text-align: right; 
+    font-style: oblique;
+}
+
+div>div figure:first-child p{
+    /*Titulo blade runner de la cara principal*/
+    border: 4px solid darkred;
+    font-family: runner;
+    font-size: 1.5em;
+    padding: 10px;
+    width: 273px;
+    text-align: center;
+    margin-top: 60px;
+    color: floralwhite;
+    background: darkred;
+    opacity: .6;
+    position: absolute;
+
+}
+
+/*No podemos cambiar a la imagen principal desde la flecha de la cara superior derecha del menu, porque
+está disparado el hover, sí podríamos hacerlo con javascript mediante un evento*/
